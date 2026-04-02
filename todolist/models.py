@@ -10,3 +10,8 @@ class Tarea(models.Model):
 
     def __str__(self):
         return f"Soy la tarea: {self.nombre}"
+    
+
+#si creo o modifico un modelo, debo correr:
+# >python manage.py makemigrations
+# >python manage.py migrate
