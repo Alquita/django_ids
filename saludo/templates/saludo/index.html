@@ -1,0 +1,25 @@
+{% extends 'saludo/base.html' %}
+
+{% block title %}
+    Saludo
+{% endblock %}
+
+{% block body %}
+    <div>
+        <h1>Hola {{ nombre }}</h1>
+        {% if edad >= 18 %}
+            <hr>
+            <p>Sos mayor de edad</p>
+            <hr>
+        {% else %}
+            <hr>
+            <p>Sos menor de edad</p>
+            <hr>
+        {% endif %}
+
+        <h1>Estas son tus mascotas juan mogolico</h1>
+        {% for mascota in mascotas %}
+            <p>{{ mascota }}</p>
+        {% endfor %}
+    </div>
+{% endblock %}
