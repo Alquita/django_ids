@@ -12,4 +12,4 @@ class TareaAdmin(admin.ModelAdmin):
     list_display = ("id", "nombre", "completada", "responsable")
     list_filter = ("completada",)
     search_fields = ("nombre",)
-    readonly_fields = ("completada",)
+    

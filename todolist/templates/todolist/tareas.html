@@ -1,0 +1,16 @@
+{% extends "saludo/base.html" %}
+
+{% block body %}
+    <h1>Tareas</h1>
+    <a href="{% url 'crear_tarea' %}">+ Nueva tarea</a>
+
+    {% for tarea in tareas %}
+        <div>
+            <h3>{{ tarea.nombre }}</h3>
+            <p>Completada: {{ tarea.completada }}</p>
+            <p>Fecha límite: {{ tarea.fecha_completado }}</p>
+        </div>
+    {% empty %}
+        <p>No hay tareas todavía.</p>
+    {% endfor %}
+{% endblock %}
