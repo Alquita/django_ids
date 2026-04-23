@@ -22,6 +22,7 @@ class Tarea(models.Model):
         null=True,
     )
     etiqueta = models.ManyToManyField(Etiqueta, default=None, blank=True, null=True)
+    activo = models.BooleanField(default=True, help_text="Verdadero si esta activo, falso no esta eliminado", verbose_name="Tarea Activa")
 
 
 

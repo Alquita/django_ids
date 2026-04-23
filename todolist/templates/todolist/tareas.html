@@ -4,9 +4,14 @@
     <h1>Tareas</h1>
     <a href="{% url 'crear_tarea' %}">+ Nueva tarea</a>
 
+    <h3>Listado de Tareas</h3>
+
     {% for tarea in tareas %}
         <div>
             <h3>{{ tarea.nombre }}</h3>
+            <a href="{% url 'editar' tarea.id %}">Editar tarea</a>
+            |   <a href="{% url 'eliminar' tarea.id %}">Eliminar tarea</a>
+            <p>activo: {{tarea.activo}}</p>
             <p>Completada: {{ tarea.completada }}</p>
             <p>Fecha límite: {{ tarea.fecha_completado }}</p>
         </div>
