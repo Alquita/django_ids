@@ -4,7 +4,7 @@ from todolist.models import Tarea
 #vistas, lógica de negocio, procesamiento de datos, etc
 
 def saludo(request):
-    tareas = Tarea.objects.filter()
+    tareas = Tarea.objects.all()
 
     return render(request, "saludo/index.html", dict(tareas=tareas))
 
