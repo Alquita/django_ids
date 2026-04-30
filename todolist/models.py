@@ -23,13 +23,19 @@ class Tarea(models.Model):
     )
     etiqueta = models.ManyToManyField(Etiqueta, default=None, blank=True, null=True)
     activo = models.BooleanField(default=True, help_text="Verdadero si esta activo, falso no esta eliminado", verbose_name="Tarea Activa")
+    imagen = models.ImageField(upload_to = "card_image/", null=True, blank=True)
 
 
-
+    def nombre_mayuscula(self):
+        return self.nombre.upper()
 
     def __str__(self):
         return f"Soy la tarea: {self.nombre}"
     
+    class Meta:
+        verbose_name = "Tarea del proyecto"
+        verbose_name_plural = "Tareas de los proyectos"
+        ordering = ['id']
 
 #si creo o modifico un modelo, debo correr:
 # >python manage.py makemigrations

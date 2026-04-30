@@ -7,8 +7,12 @@
     <h3>Listado de Tareas</h3>
 
     {% for tarea in tareas %}
+
+    {% if tarea.imagen %}
+    <img src="{{tarea.imagen.url}}" alt="imagen de {{tarea.nombre}}" width="200px">
+    {%endif%}
         <div>
-            <h3>{{ tarea.nombre }}</h3>
+            <h3>{{ tarea.nombre_mayuscula }}</h3>
             <a href="{% url 'editar' tarea.id %}">Editar tarea</a>
             |   <a href="{% url 'eliminar' tarea.id %}">Eliminar tarea</a>
             <p>activo: {{tarea.activo}}</p>

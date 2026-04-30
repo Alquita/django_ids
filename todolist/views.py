@@ -8,7 +8,7 @@ def tareas(request):
 
 def crear_tarea(request):
     if request.method == "POST":
-        form = TareaForm(request.POST)
+        form = TareaForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect("tareas")
@@ -23,7 +23,7 @@ def crear_tarea(request):
 def editar_tarea(request, id):
     tarea = get_object_or_404(Tarea, id=id)
     if request.method == "POST":
-        form = TareaForm(request.POST, instance=tarea)
+        form = TareaForm(request.POST, request.FILES, instance=tarea)
         if form.is_valid():
             form.save()
             return redirect("tareas")
