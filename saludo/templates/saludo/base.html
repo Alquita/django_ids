@@ -15,10 +15,23 @@
         <a href="/tareas">Tareas</a>
         <a href="/admin">admin</a>
 
+        <a href="{% url 'login' %}">Iniciar sesion</a>
+        
+        {% if user.is_authenticated %}
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Cerrar sesion</button>
+        </form>
+
+        {% else %}
     </nav>
-
-    {% block body %}
-
-    {% endblock %}
-</body>
+        <p>no estas logueado</p>
+        
+        <span>{{ user.username }}</span>
+        {% endif %}
+        
+        {% block body %}
+        
+        {% endblock %}
+    </body>
 </html>
