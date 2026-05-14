@@ -1,13 +1,18 @@
 
-{% extends "saludo/base.html" %}
+{% extends 'saludo/base.html'%}
 
-{% block body %}
-    <hr>
-    <h1>Crearse una nueva cuenta</h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">crear cuenta</button>
-    </form>
-{% endblock %}
+{%block body%}
+
+<hr>
+<h1>Crearse una nueva cuenta</h1>
+<form method="post" enctype="multipart/form-data">
+
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit"> Crear</button>
+</form>
+
+
+{%endblock%}
 

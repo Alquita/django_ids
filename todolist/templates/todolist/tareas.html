@@ -1,25 +1,35 @@
-{% extends "saludo/base.html" %}
+{% extends 'saludo/base.html'%}
 
-{% block body %}
-    <h1>Tareas</h1>
-    <a href="{% url 'crear_tarea' %}">+ Nueva tarea</a>
+{%block body%}
+<ul>
 
     <h3>Listado de Tareas</h3>
+    <a href="{%url 'crear_tarea'%}">Nueva tarea...</a>
+
+    <hr>
 
     {% for tarea in tareas %}
 
-    {% if tarea.imagen %}
-    <img src="{{tarea.imagen.url}}" alt="imagen de {{tarea.nombre}}" width="200px">
+    {%if tarea.imagen%}
+    <img src="{{tarea.imagen.url}}" alt="imagen {{tarea.nombre}}" width="200">
     {%endif%}
-        <div>
-            <h3>{{ tarea.nombre_mayuscula }}</h3>
-            <a href="{% url 'editar' tarea.id %}">Editar tarea</a>
-            |   <a href="{% url 'eliminar' tarea.id %}">Eliminar tarea</a>
-            <p>activo: {{tarea.activo}}</p>
-            <p>Completada: {{ tarea.completada }}</p>
-            <p>Fecha límite: {{ tarea.fecha_completado }}</p>
-        </div>
-    {% empty %}
-        <p>No hay tareas todavía.</p>
+
+    <li>{{ tarea.nombre_mayuscula }}, Completada: {{tarea.completada}}. Activo: {{tarea.activo}}</li>
+    
+    {% if perms.todolist.change_tarea %}
+    <a href="{%url 'editar' tarea.id %}">Editar esta tarea...</a>
+    {%endif%}
+    |
+    {% if perms.todolist.delete_tarea %}
+    <a href="{% url 'borrar' tarea.id %}">BORRAR</a>
+    {%endif%}
+    
+    <hr>
     {% endfor %}
-{% endblock %}
+</ul>
+{%endblock%}
+
+
+
+
+<!-- <li>{{ tarea.responsable.username}}, {{tarea.etiquetas}}</li> -->
