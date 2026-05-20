@@ -25,7 +25,7 @@
 
         {% else %}
     </nav>
-        <p>no estas logueado</p>
+        <p>no estas logueado | <a href="{% url 'login' %}">Login</a></p>
         
         <span>{{ user.username }}</span>
         {% endif %}
