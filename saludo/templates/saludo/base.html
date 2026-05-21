@@ -20,15 +20,18 @@
         {% if user.is_authenticated %}
         <form action="{% url 'logout' %}" method="post">
             {% csrf_token %}
+            <p>{{mensaje_bienvenida}}</p>
             <button type="submit">Cerrar sesion</button>
         </form>
 
         {% else %}
     </nav>
-        <p>no estas logueado | <a href="{% url 'login' %}">Login</a></p>
+        <p> {{mensaje_bienvenida }} | <a href="{% url 'login' %}">Login</a></p>
         
         <span>{{ user.username }}</span>
         {% endif %}
+
+        {{ year }} Todos los derechos reservados
         
         {% block body %}
         

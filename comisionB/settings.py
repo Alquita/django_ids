@@ -65,6 +65,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'comisionB.context_processors.year_context', #se agrega la direccion del context processor creado para que se ejecute en cada renderizado de template.
+                'comisionB.context_processors.bienvenido_context',
+                'comisionB.context_processors.etiquetas_context',
             ],
         },
     },
