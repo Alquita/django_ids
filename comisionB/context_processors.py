@@ -2,6 +2,7 @@
 from datetime import datetime
 from todolist.models import Etiqueta
 from django.core.cache import cache
+from django.utils.translation import gettext_lazy as _
 
 def year_context(request):
     year = datetime.now().year
@@ -12,10 +13,10 @@ def year_context(request):
 def bienvenido_context (request):
 
     if request.user.is_authenticated:
-        mensaje = f"Bienvenido {request.user.username} a mi sitio web!"
+        mensaje = _(f"Bienvenido {request.user.username} a mi sitio web!")
 
     else:
-        mensaje = "Bienvenido a mi sitio web invitado, por favor inicia sesión para una mejor experiencia"
+        mensaje = _("Bienvenido a mi sitio web invitado, por favor inicia sesión para una mejor experiencia")
 
 
     return {'mensaje_bienvenida': mensaje}
