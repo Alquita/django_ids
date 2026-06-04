@@ -1,5 +1,10 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required, permission_required
+from django.views.generic import ListView, UpdateView, DeleteView, CreateView
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+
+
 
 from .forms import TareaForm
 from .models import Tarea
@@ -58,9 +63,36 @@ def eliminar_tarea(request, id):
 
     return render(request, "todolist/borrar_tarea.html", {"tarea": tarea})
 
+# vistas basadas en clases
+
+class GetTareas(LoginRequiredMixin, ListView):
+    model = Tarea
+    template_name = "todolist/tareas.html"
+    context_object_name = "tareas"
 
 
 
+#GET TAREA BY ID: DetailView
+
+class UpdateTareas(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+    model = Tarea
+    template_name = "todolist/editar_tarea.html"
+    form_class = TareaForm
+    success_url = reverse_lazy("tareas") #redirecciona a tareas luego de editar
+    permission_required = "todolist.change_tarea" #nombre_app.accion_modelo
+
+
+class DeleteTareas(DeleteView):
+    model = Tarea
+    template_name = "todolist/borrar_tarea.html"
+    success_url = reverse_lazy("tareas") #redirecciona a tareas luego de eliminar
+
+
+class CreateTareas(CreateView):
+    model = Tarea
+    template_name = "todolist/crear_tarea.html"
+    form_class = TareaForm
+    success_url = reverse_lazy("tareas") #redirecciona a tareas luego de crear
 
 
 
